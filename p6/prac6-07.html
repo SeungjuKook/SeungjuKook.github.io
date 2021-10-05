@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>큰 자리수와 낮은 자리수 같은지 비교</title>
+</head>
+<body>
+    <script>
+        document.write("<h3>큰 자리수와 낮은 자리수 같은지 비교</h3>");
+        document.write("<hr>");
+    </script>
+    <script>
+        function compare (a) {
+            if(a>9) {
+                var least = a%10;
+                var most = 0;
+                var b = a;
+                while(most == 0) {
+                    b = Math.floor(b/10);
+                    if (b<10) {most = b;}
+                }
+                if(least == most) {
+                    document.write (str + ": 같음");
+                }
+                else {
+                    document.write (str + ": 다름");
+                }
+            }
+            else if(a > 0) {
+                document.write (str + ": 한 자리 수는 다루지 않습니다.");
+            }
+            else if (a == 0) {
+                document.write (str + ": 0은 다루지 않습니다.");
+            }
+            else if (a < 0) {
+                document.write (str + ": 음수는 다루지 않습니다.");
+            }
+            else {
+                document.write (str + ": 다시 입력하시오.");
+            }
+        }
+    </script>
+    <script>
+        var str = prompt("숫자 입력", "0");
+        compare (str);
+    </script>
+</body>
+</html>
