@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, init ial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border: 1px solid black;
+    }
+    th, td {
+      border: 1px solid black;
+    }
+  </style>
+  <script>  
+    function loadDoc() {
+      let xhttp = new XMLHttpRequest();
+      let queryParams = '?' + encodeURIComponent('ServiceKey') + 
+      '='+'R%2F5f0YzRaGQ7XNm6bvA5bZYpaxbTcHGPQOUAjpPfo9IGZgtjZw9iuZkTHeBVjCKgIhi%2BJlUgCZVagxNUnlrOPw%3D%3D'; /*Service Key*/
+      queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+      queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('15'); /**/
+      queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
+
+      xhttp.open('GET', 'http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List' + queryParams);
+
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          myFunction(this)
+        }
+      };
+
+      xhttp.send();
+    }
+    
+    function myFunction(xhttp) {
+      let i;
+      let xmlDoc = xhttp.responseXML;
+      let table="<tr><th>location</th><th>massage</th></tr>";
+      let x = xmlDoc.getElementsByTagName("row");
+      for (i = 0; i <x.length; i++) {
+        table += "<tr><td>" +
+        x[i].getElementsByTagName("location_name")[0].childNodes[0].nodeValue +
+        "</td><td>"+
+        x[i].getElementsByTagName("msg")[0].childNodes[0].nodeValue +
+        "</td></tr>";
+      }
+      document.getElementById("list").innerHTML = table;
+    }
+
+  </script>
+</head>
+<body onload="loadDoc()">
+  <h3>재난문자 목록(15개)</h3>
+  <table id="list"></table>
+</body>
+</html>
