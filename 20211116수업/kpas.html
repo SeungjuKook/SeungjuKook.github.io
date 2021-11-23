@@ -19,7 +19,7 @@
       let queryParams = '?' + encodeURIComponent('ServiceKey') + 
       '='+'R%2F5f0YzRaGQ7XNm6bvA5bZYpaxbTcHGPQOUAjpPfo9IGZgtjZw9iuZkTHeBVjCKgIhi%2BJlUgCZVagxNUnlrOPw%3D%3D'; /*Service Key*/
       queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-      queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('15'); /**/
+      queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
       queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
 
       xhttp.open('GET', 'http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List' + queryParams);
@@ -51,7 +51,7 @@
   </script>
 </head>
 <body onload="loadDoc()">
-  <h3>재난문자 목록(15개)</h3>
+  <h3>재난문자 목록(10개)</h3>
   <hr>
   <table id="list"></table>
 </body>
