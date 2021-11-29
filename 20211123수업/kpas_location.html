@@ -61,7 +61,6 @@
 <body>
 <div id="map" style="width:100%;height:400px;"></div>
 <hr>
-<button type="button" onclick="loadDoc()">지역 선택 후 클릭</button>
 <div>현재 선택된 지역 : </div><div id="loc"></div>
 <table id="list"></table>
 
@@ -146,9 +145,22 @@ function startDataLayer() {
         // 여기서 다른 선택된 지역 있는지 지워줘야 됩니당
         // 지워주는 방법은
         // map.data._features 를 foreach 하면서 focus 끄시면 됩니다.
+        map.data.forEach(reset);
+        function reset() {
+            feature.setProperty('focus', false);
+        }
+
         if (feature.getProperty('focus') !== true) {
+
+            map.data._features.forEach(
+                function (feature) {
+                    feature.setProperty('focus', false);
+                }
+            );
+
             document.getElementById("loc").innerHTML = feature.getProperty('area1');
             feature.setProperty('focus', true);
+            loadDoc();
         } else {
             feature.setProperty('focus', false);
         }
