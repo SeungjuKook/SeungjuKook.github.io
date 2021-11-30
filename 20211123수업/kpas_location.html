@@ -73,8 +73,8 @@ var HOME_PATH = "https://navermaps.github.io/maps.js/docs",
     loadCount = 0;
 
 var map = new naver.maps.Map(document.getElementById('map'), {
-    zoom: 7,
-    mapTypeId: 'normal',
+    zoom: 7, //초기 배율 설정
+    mapTypeId: 'normal', // 초기 지도 유형의 id
     center: new naver.maps.LatLng(36.4203004, 128.317960)
 });
 
