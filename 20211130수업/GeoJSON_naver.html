@@ -19,7 +19,7 @@
 
 
 <script>
-
+// 지도 로드하기
 var HOME_PATH = "https://navermaps.github.io/maps.js/docs",
     urlPrefix = HOME_PATH +'/data/region',
     urlSuffix = '.json',
@@ -39,7 +39,7 @@ naver.maps.Event.once(map, 'init_stylemap', function () {
     $.ajax({
         url: HOME_PATH +'/data/naver.json',
         dataType: 'json',
-        success: startDataLayer
+        success: startDataLayer//성공 시  실행 할 함수
     });
 });
 
@@ -48,19 +48,19 @@ tooltip.appendTo(map.getPanes().floatPane);
 
 
 function startDataLayer(geojson) {
-    map.data.addGeoJson(geojson);
+    map.data.addGeoJson(geojson); //map.data에 geojson 추가
 
-    map.data.setStyle(function(feature) {
+    map.data.setStyle(function(feature) {//스타일 지정
         var color = 'red';
 
         if (feature.getProperty('isColorful')) {
-            color = feature.getProperty('color');
+            color = feature.getProperty('color');//원래 기존 색
         }
 
         return {
-            fillColor: color,
-            strokeColor: color,
-            strokeWeight: 2,
+            fillColor: color, //내부 색
+            strokeColor: color, //외곽선 색
+            strokeWeight: 2, //외곽선 두께
             icon: null
         };
     });
@@ -70,22 +70,22 @@ function startDataLayer(geojson) {
     });
 
     map.data.addListener('dblclick', function(e) {
-        var bounds = e.feature.getBounds();
+        var bounds = e.feature.getBounds(); //객체 좌표 경계
 
         if (bounds) {
-            map.panToBounds(bounds);
+            map.panToBounds(bounds); //지도 부드럽게 연결
         }
     });
 
     map.data.addListener('mouseover', function(e) {
         map.data.overrideStyle(e.feature, {
-            strokeWeight: 8,
+            strokeWeight: 8, //외곽선 두께 8 지정
             icon: HOME_PATH +'/img/example/pin_spot.png'
         });
     });
 
     map.data.addListener('mouseout', function(e) {
-        map.data.revertStyle();
+        map.data.revertStyle(); //원래 스타일로
     });
 } 
 </script>
