@@ -1,57 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, init ial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    table {
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-    }
-  </style>
-  <script>  
-    function loadDoc() {
-        var xhr = new XMLHttpRequest();
-        var url = 'http://apis.data.go.kr/1741000/EmergencyAssemblyArea_Earthquake2/getArea1List'; /*URL*/
-        var queryParams = '?' + encodeURIComponent('ServiceKey') + 
-      '='+'R%2F5f0YzRaGQ7XNm6bvA5bZYpaxbTcHGPQOUAjpPfo9IGZgtjZw9iuZkTHeBVjCKgIhi%2BJlUgCZVagxNUnlrOPw%3D%3D'; /*Service Key*/
-        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-        queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
-        xhr.open('GET', url + queryParams);
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-            }
-        };
 
-        xhr.send('');
-    }
-    
-    function myFunction(xhttp) {
-      let i;
-      let xmlDoc = xhttp.responseXML;
-      let table="<tr><th>location</th><th>massage</th></tr>";
-      let x = xmlDoc.getElementsByTagName("row");
-      for (i = 0; i <x.length; i++) {
-        table += "<tr><td>" +
-        x[i].getElementsByTagName("location_name")[0].childNodes[0].nodeValue +
-        "</td><td>"+
-        x[i].getElementsByTagName("msg")[0].childNodes[0].nodeValue +
-        "</td></tr>";
-      }
-      document.getElementById("list").innerHTML = table;
-    }
 
-  </script>
+  var HOME_PATH = 'https://navermaps.github.io/maps.js/docs',
+  urlPrefix = HOME_PATH + '/data/region',
+  urlSuffix = '.json',
+  regionGeoJson = [],
+  loadCount = 0;
+
 </head>
-<body onload="loadDoc()">
-  <h3>재난문자 목록(10개)</h3>
-  <hr>
-  <table id="list"></table>
+<body>
+  
 </body>
 </html>
